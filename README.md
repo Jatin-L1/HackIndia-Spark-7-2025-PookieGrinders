@@ -22,14 +22,14 @@ The current public distribution systems face several critical challenges:
 Grainlyy creates an end-to-end transparent supply chain for public distribution systems:
 
 - **Blockchain-verified assignments**: Government assigns ration deliveries through immutable blockchain records
-- **GPS-verified deliveries**: Dealers complete deliveries with real-time location verification
+- **Location-verified deliveries**: Dealers complete deliveries with real-time location verification
 - **Public verification**: Citizens and NGOs can transparently track the entire delivery process
 - **Trust scoring**: Automatic rating system for dealers based on delivery performance
 
 ## ✨ Key Features
 
 - **Immutable delivery records** stored on blockchain
-- **Real-time GPS verification** of delivery locations
+- **Real-time Location verification** of delivery locations
 - **Trust score system** for dealers
 - **Multiple dashboards** for different stakeholders
 - **No mobile app required** - works directly in web browsers
@@ -41,10 +41,10 @@ Grainlyy creates an end-to-end transparent supply chain for public distribution 
 |-----------|------------|---------|
 | Smart Contract | Solidity + Foundry | To assign deliveries, mark completion, and store logs on-chain |
 | Oracle Layer | Chainlink Functions | To verify real-world GPS locations on the blockchain |
-| Wallet | Inbuilt | For login and secure transactions |
+| Wallet | Inbuilt/Metamask | For login and secure transactions |
 | Frontend | Next.js | To build interactive dashboards for users |
 | Backend | Node.js + Express.js | To manage location data, Chainlink calls, and frontend connectivity |
-| Blockchain | Polygon / Gnosis | For fast and low-cost transactions |
+| Blockchain | Etherium  | For fast and low-cost transactions |
 | Database (Optional) | MongoDB Atlas | For off-chain storage like complaints and analytics |
 | Storage (Optional) | IPFS | For decentralized storage of documents and images |
 
@@ -58,8 +58,8 @@ Grainlyy creates an end-to-end transparent supply chain for public distribution 
    - Delivery records are permanently and immutably stored on the blockchain
 
 2. **Chainlink Functions**
-   - Dealer's browser collects current GPS (latitude/longitude)
-   - Backend sends GPS data to Chainlink Functions for validation
+   - Dealer's browser collects current (latitude/longitude)
+   - Backend sends Location data to Chainlink Functions for validation
    - Chainlink verifies whether the delivery occurred at the correct location
 
 3. **Trust Score System**
@@ -71,7 +71,7 @@ Grainlyy creates an end-to-end transparent supply chain for public distribution 
 
 - Uses browser's `navigator.geolocation.getCurrentPosition()` API
 - No mobile app required - works directly in web browsers
-- GPS validation done via Chainlink Functions or OpenStreetMap
+- Location validation done via Chainlink Functions or OpenStreetMap
 - No dependency on Google Maps API, making it cost-efficient
 
 ### End-to-End Process Flow
