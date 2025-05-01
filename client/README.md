@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Grainlyy - Blockchain-Based Public Distribution Tracker
 
-## Getting Started
+![Grainlyy Logo](/client/public/image.png)
 
-First, run the development server:
+Grainlyy is a blockchain-based system designed to make government ration delivery systems transparent, tamper-proof, and publicly verifiable.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📋 Problem Statement
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The current public distribution systems face several critical challenges:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Corruption** in the ration delivery process
+- **Fake delivery entries** created by unscrupulous dealers
+- **Lack of transparency** - the public has no reliable way to verify if deliveries were actually completed
+- **No accountability** for distributors who fail to deliver as promised
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Solution
 
-## Learn More
+Grainlyy creates an end-to-end transparent supply chain for public distribution systems:
 
-To learn more about Next.js, take a look at the following resources:
+- **Blockchain-verified assignments**: Government assigns ration deliveries through immutable blockchain records
+- **GPS-verified deliveries**: Dealers complete deliveries with real-time location verification
+- **Public verification**: Citizens and NGOs can transparently track the entire delivery process
+- **Trust scoring**: Automatic rating system for dealers based on delivery performance
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Immutable delivery records** stored on blockchain
+- **Real-time GPS verification** of delivery locations
+- **Trust score system** for dealers
+- **Multiple dashboards** for different stakeholders
+- **No mobile app required** - works directly in web browsers
+- **Complaint management system** for beneficiaries
 
-## Deploy on Vercel
+## 🧱 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| Smart Contract | Solidity + Foundry | To assign deliveries, mark completion, and store logs on-chain |
+| Oracle Layer | Chainlink Functions | To verify real-world GPS locations on the blockchain |
+| Wallet | Inbuilt | For login and secure transactions |
+| Frontend | Next.js | To build interactive dashboards for users |
+| Backend | Node.js + Express.js | To manage location data, Chainlink calls, and frontend connectivity |
+| Blockchain | Polygon / Gnosis | For fast and low-cost transactions |
+| Database (Optional) | MongoDB Atlas | For off-chain storage like complaints and analytics |
+| Storage (Optional) | IPFS | For decentralized storage of documents and images |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏗️ Architecture
+
+### Blockchain Flow
+
+1. **Smart Contract (Delivery.sol)**
+   - Government assigns deliveries to dealers
+   - Dealers complete deliveries after successful GPS verification
+   - Delivery records are permanently and immutably stored on the blockchain
+
+2. **Chainlink Functions**
+   - Dealer's browser collects current GPS (latitude/longitude)
+   - Backend sends GPS data to Chainlink Functions for validation
+   - Chainlink verifies whether the delivery occurred at the correct location
+
+3. **Trust Score System**
+   - Each dealer maintains a trust score
+   - Successful deliveries improve trust score
+   - False or incorrect deliveries reduce trust score
+
+### Location Verification
+
+- Uses browser's `navigator.geolocation.getCurrentPosition()` API
+- No mobile app required - works directly in web browsers
+- GPS validation done via Chainlink Functions or OpenStreetMap
+- No dependency on Google Maps API, making it cost-efficient
+
+### End-to-End Process Flow
+
+1. Government assigns delivery tasks via the dashboard
+2. Dealer logs in through wallet (MetaMask) on the dealer dashboard
+3. Dealer views assigned delivery tasks
+4. Dealer clicks "Mark as Delivered" and grants GPS location access
+5. Backend verifies GPS coordinates:
+   - If correct → Delivery is marked complete on the blockchain
+   - If incorrect → Delivery is rejected; no payment processed
+6. Public and NGOs can transparently track all delivery records through the public dashboard
+
+## 🚦 Getting Started
+
+### Prerequisites
+
+- Node.js 16+
+- MetaMask wallet extension
+- Internet connection (for GPS functionality)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/Grainlyy.git
+   cd Grainlyy
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+3. Set up environment variables:
+   ```
+   cp .env.example .env.local
+   ```
+   Then edit `.env.local` with your configuration.
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+## 📊 Project Status
+
+This project is currently in development. Features being worked on:
+
+- [ ] Smart contract implementation
+- [ ] GPS verification through Chainlink
+- [ ] Admin dashboard
+- [ ] Dealer interface
+- [ ] Public verification portal
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📬 Contact
+
+For questions or suggestions, please reach out to [jatinsharmasm2435@gmail.com](jatinsharmasm2435@gmail.com).
+
+---
+
+Built with ❤️ for transparency and accountability grainlyy.
