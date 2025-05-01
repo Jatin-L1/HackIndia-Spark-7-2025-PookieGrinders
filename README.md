@@ -1,6 +1,10 @@
 # Grainlyy - Blockchain-Based Public Distribution Tracker
 
-![Grainlyy Logo](/client/public/image.png)
+<p align="center">
+  
+![Grainlyy Logo](https://github.com/user-attachments/assets/d6d0533e-1b26-42f5-8c2b-9b3450e84f15)
+</p>
+
 
 Grainlyy is a blockchain-based system designed to make government ration delivery systems transparent, tamper-proof, and publicly verifiable.
 
