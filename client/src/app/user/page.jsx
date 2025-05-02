@@ -389,28 +389,28 @@ const payForRation = async (rationId, amount) => {
       value: userData?.category === 1 ? "BPL" : userData?.category === 2 ? "APL" : "General",
       change: "Active",
       icon: Users,
-      color: "bg-emerald-100 text-emerald-600",
+      color: "bg-green-100 text-green-700",
     },
     {
       title: "Rations Received",
       value: userRations.filter(r => r.isPaid).length.toString(),
       change: `+${userRations.filter(r => r.isPaid).length > 0 ? 1 : 0}`,
       icon: Package,
-      color: "bg-blue-100 text-blue-600",
+      color: "bg-green-100 text-green-700",
     },
     {
       title: "Pending Payments",
       value: userRations.filter(r => !r.isPaid).length.toString(),
       change: userRations.filter(r => !r.isPaid).length > 0 ? "Action Required" : "All Clear",
       icon: IndianRupee,
-      color: "bg-amber-100 text-amber-600",
+      color: "bg-green-100 text-green-700",
     },
     {
       title: "Depot",
       value: userData?.depotId ? `#${userData.depotId}` : "None",
       change: userData?.depotId ? "Assigned" : "Unassigned",
       icon: HeartHandshake,
-      color: "bg-purple-100 text-purple-600",
+      color: "bg-green-100 text-green-700",
     },
   ];
 
@@ -421,12 +421,12 @@ const payForRation = async (rationId, amount) => {
         <div className="bg-white rounded-lg p-6 max-w-md w-full">
           <div className="flex items-center mb-4">
             <div className="w-12 h-12 mr-4 bg-green-100 rounded-full flex items-center justify-center">
-              <Package className="h-6 w-6 text-green-600" />
+              <Package className="h-6 w-6 text-green-700" />
             </div>
             <h3 className="text-lg font-bold">New Ration Allocated!</h3>
           </div>
           
-          <div className="border-t border-b py-4 my-4">
+          <div className="border-t border-b border-green-100 py-4 my-4">
             <div className="flex justify-between mb-2">
               <span className="text-gray-600">Depot:</span>
               <span className="font-medium">#{notification.depotId}</span>
@@ -434,14 +434,14 @@ const payForRation = async (rationId, amount) => {
             
             <div className="flex justify-between mb-2">
               <span className="text-gray-600">Amount Due:</span>
-              <span className="font-medium text-green-600">{notification.amount} ETH</span>
+              <span className="font-medium text-green-700">{notification.amount} ETH</span>
             </div>
             
             <div className="mt-3">
               <p className="font-medium text-gray-700">Items included:</p>
               <div className="flex flex-wrap gap-1 mt-1">
                 {notification.items.map((item, index) => (
-                  <Badge key={index} className="bg-green-50 text-green-800 border-green-200">
+                  <Badge key={index} className="bg-green-50 text-green-800 border-green-100">
                     {item.name}: {item.quantity}
                   </Badge>
                 ))}
@@ -452,7 +452,7 @@ const payForRation = async (rationId, amount) => {
           <div className="flex justify-between gap-4 mt-4">
             <Button 
               variant="outline" 
-              className="flex-1"
+              className="flex-1 border-green-200"
               onClick={onClose}
             >
               Pay Later
@@ -475,7 +475,7 @@ const payForRation = async (rationId, amount) => {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 mx-auto animate-spin text-emerald-600" />
+          <Loader2 className="h-12 w-12 mx-auto animate-spin text-green-600" />
           <p className="mt-4 text-lg text-gray-600">Loading your dashboard...</p>
         </div>
       </div>
@@ -490,7 +490,7 @@ const payForRation = async (rationId, amount) => {
           <h2 className="mt-4 text-xl font-bold text-gray-800">Authentication Error</h2>
           <p className="mt-2 text-gray-600">{error}</p>
           <Button 
-            className="mt-6 bg-emerald-600 hover:bg-emerald-700" 
+            className="mt-6 bg-green-600 hover:bg-green-700" 
             onClick={() => router.push('/')}
           >
             Back to Home
@@ -501,9 +501,9 @@ const payForRation = async (rationId, amount) => {
   }
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto p-6">
+    <div className="container mx-auto p-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">User Dashboard</h1>
           {userData && (
@@ -518,7 +518,7 @@ const payForRation = async (rationId, amount) => {
       </div>
 
       {error && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" className="mb-6">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
@@ -526,8 +526,8 @@ const payForRation = async (rationId, amount) => {
       )}
 
       {success && (
-        <Alert className="bg-green-50 border-green-200">
-          <CheckCircle2 className="h-4 w-4 text-green-600" />
+        <Alert className="bg-green-50 border-green-100 mb-6">
+          <CheckCircle2 className="h-4 w-4 text-green-700" />
           <AlertTitle className="text-green-800">Success</AlertTitle>
           <AlertDescription className="text-green-700">{success}</AlertDescription>
         </Alert>
@@ -535,14 +535,14 @@ const payForRation = async (rationId, amount) => {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="bg-green-50 mb-6">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-white">
+        <TabsList className="bg-green-50 border border-green-100 mb-6">
+          <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:text-green-700">
             Overview
           </TabsTrigger>
-          <TabsTrigger value="rations" className="data-[state=active]:bg-white">
+          <TabsTrigger value="rations" className="data-[state=active]:bg-white data-[state=active]:text-green-700">
             My Rations
           </TabsTrigger>
-          <TabsTrigger value="history" className="data-[state=active]:bg-white">
+          <TabsTrigger value="history" className="data-[state=active]:bg-white data-[state=active]:text-green-700">
             Transaction History
           </TabsTrigger>
         </TabsList>
@@ -558,15 +558,15 @@ const payForRation = async (rationId, amount) => {
           >
             {getStats().map((stat, index) => (
               <motion.div key={index} variants={item}>
-                <Card>
+                <Card className="border border-green-100">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-gray-500">{stat.title}</p>
                         <h3 className="text-2xl font-bold mt-1">{stat.value}</h3>
                         <div className="flex items-center mt-1 text-sm">
-                          <ArrowUpRight className="h-4 w-4 text-emerald-500 mr-1" />
-                          <span className="text-emerald-500">{stat.change}</span>
+                          <ArrowUpRight className="h-4 w-4 text-green-600 mr-1" />
+                          <span className="text-green-600">{stat.change}</span>
                         </div>
                       </div>
                       <div className={`${stat.color} p-3 rounded-full`}>
@@ -581,7 +581,7 @@ const payForRation = async (rationId, amount) => {
 
           {/* Allocation Chart */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-            <Card>
+            <Card className="border border-green-100">
               <CardHeader>
                 <CardTitle>Ration Allocation History</CardTitle>
                 <CardDescription>
@@ -617,7 +617,7 @@ const payForRation = async (rationId, amount) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Pending Payments */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-              <Card>
+              <Card className="border border-green-100">
                 <CardHeader>
                   <CardTitle>Pending Payments</CardTitle>
                   <CardDescription>Rations allocated but not yet paid</CardDescription>
@@ -626,12 +626,12 @@ const payForRation = async (rationId, amount) => {
                   <div className="space-y-4">
                     {userRations.filter(r => !r.isPaid).length > 0 ? (
                       userRations.filter(r => !r.isPaid).map((ration) => (
-                        <div key={ration.id} className="flex items-start space-x-4 pb-4 border-b last:border-0 last:pb-0">
+                        <div key={ration.id} className="flex items-start space-x-4 pb-4 border-b border-green-100 last:border-0 last:pb-0">
                           <div className="w-2 h-2 mt-2 rounded-full bg-amber-500"></div>
                           <div className="flex-1">
                             <div className="flex justify-between">
                               <h4 className="text-sm font-medium">Ration #{ration.id}</h4>
-                              <Badge className="bg-amber-100 text-amber-800">Pending Payment</Badge>
+                              <Badge className="bg-amber-100 text-amber-800 border-amber-200">Pending Payment</Badge>
                             </div>
                             <p className="text-sm text-gray-500 mt-1">
                               Allocated on {formatDate(ration.date)}
@@ -640,7 +640,7 @@ const payForRation = async (rationId, amount) => {
                               From Depot #{ration.depotId}
                             </p>
                             <Button
-                              className="mt-2 bg-emerald-600 hover:bg-emerald-700 text-sm h-8"
+                              className="mt-2 bg-green-600 hover:bg-green-700 text-sm h-8"
                               onClick={() => {
                                 setSelectedRation(ration);
                                 setPaymentAmount(ration.amount || "0.01");
@@ -666,7 +666,7 @@ const payForRation = async (rationId, amount) => {
 
             {/* Recent Transactions */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
-              <Card>
+              <Card className="border border-green-100">
                 <CardHeader>
                   <CardTitle>Recent Transactions</CardTitle>
                   <CardDescription>Latest blockchain transactions</CardDescription>
@@ -675,12 +675,12 @@ const payForRation = async (rationId, amount) => {
                   <div className="space-y-4">
                     {txHistory.length > 0 ? (
                       txHistory.slice(0, 3).map((tx, i) => (
-                        <div key={i} className="flex items-start space-x-4 pb-4 border-b last:border-0 last:pb-0">
-                          <div className="w-2 h-2 mt-2 rounded-full bg-emerald-500"></div>
+                        <div key={i} className="flex items-start space-x-4 pb-4 border-b border-green-100 last:border-0 last:pb-0">
+                          <div className="w-2 h-2 mt-2 rounded-full bg-green-500"></div>
                           <div className="flex-1">
                             <div className="flex justify-between">
                               <h4 className="text-sm font-medium">{tx.type}</h4>
-                              <span className="text-sm font-mono text-emerald-600">{tx.amount}</span>
+                              <span className="text-sm font-mono text-green-700">{tx.amount}</span>
                             </div>
                             <p className="text-sm text-gray-500 mt-1">
                               {tx.details}
@@ -692,7 +692,7 @@ const payForRation = async (rationId, amount) => {
                               href={`https://sepolia.etherscan.io/tx/${tx.txHash}`} 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              className="text-xs text-blue-600 hover:underline flex items-center mt-1"
+                              className="text-xs text-green-700 hover:underline flex items-center mt-1"
                             >
                               View on Etherscan
                               <ArrowUpRight className="ml-1 h-3 w-3" />
@@ -709,10 +709,10 @@ const payForRation = async (rationId, amount) => {
                   </div>
                 </CardContent>
                 {txHistory.length > 3 && (
-                  <CardFooter>
+                  <CardFooter className="border-t border-green-100">
                     <Button 
                       variant="outline" 
-                      className="w-full border-emerald-200 text-emerald-700"
+                      className="w-full border-green-200 text-green-700"
                       onClick={() => setActiveTab('history')}
                     >
                       View All Transactions
@@ -726,7 +726,7 @@ const payForRation = async (rationId, amount) => {
 
         {/* My Rations Tab */}
         <TabsContent value="rations" className="space-y-6">
-          <Card>
+          <Card className="border border-green-100">
             <CardHeader>
               <CardTitle>My Ration Allocations</CardTitle>
               <CardDescription>View all allocated rations and make payments</CardDescription>
@@ -746,7 +746,7 @@ const payForRation = async (rationId, amount) => {
                   </TableHeader>
                   <TableBody>
                     {userRations.map((ration) => (
-                      <TableRow key={ration.id} className="hover:bg-green-50/50">
+                      <TableRow key={ration.id} className="hover:bg-green-50/50 border-b border-green-100">
                         <TableCell className="font-medium">{ration.id}</TableCell>
                         <TableCell>{formatDate(ration.date)}</TableCell>
                         <TableCell>#{ration.depotId}</TableCell>
@@ -761,9 +761,9 @@ const payForRation = async (rationId, amount) => {
                         </TableCell>
                         <TableCell>
                           {ration.isPaid ? (
-                            <Badge className="bg-green-100 text-green-800">Paid</Badge>
+                            <Badge className="bg-green-100 text-green-800 border-green-200">Paid</Badge>
                           ) : (
-                            <Badge className="bg-amber-100 text-amber-800">Payment Pending</Badge>
+                            <Badge className="bg-amber-100 text-amber-800 border-amber-200">Payment Pending</Badge>
                           )}
                         </TableCell>
                         <TableCell>
@@ -771,7 +771,7 @@ const payForRation = async (rationId, amount) => {
                             <Button
                               variant="outline"
                               size="sm"
-                              className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                              className="border-green-200 text-green-700 hover:bg-green-50"
                               onClick={() => {
                                 setSelectedRation(ration);
                                 setPaymentAmount(ration.amount || "0.01");
@@ -796,16 +796,16 @@ const payForRation = async (rationId, amount) => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border border-green-100">
             <CardHeader>
               <CardTitle>Upcoming Allocations</CardTitle>
               <CardDescription>Schedule for upcoming ration distributions</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="flex items-start space-x-4 pb-4 border-b">
+                <div className="flex items-start space-x-4 pb-4 border-b border-green-100">
                   <div className="min-w-[60px] text-center">
-                    <p className="text-sm font-bold text-emerald-600">May 15</p>
+                    <p className="text-sm font-bold text-green-700">May 15</p>
                     <p className="text-xs text-gray-500">Mon</p>
                   </div>
                   <div>
@@ -813,7 +813,7 @@ const payForRation = async (rationId, amount) => {
                     <p className="text-sm text-gray-500 mt-1">
                       Rice, wheat, oil, and pulses
                     </p>
-                    <p className="text-xs text-emerald-600 mt-1">
+                    <p className="text-xs text-green-700 mt-1">
                       At Depot #{userData?.depotId || "N/A"}
                     </p>
                   </div>
@@ -821,7 +821,7 @@ const payForRation = async (rationId, amount) => {
                 
                 <div className="flex items-start space-x-4 pb-4">
                   <div className="min-w-[60px] text-center">
-                    <p className="text-sm font-bold text-emerald-600">Jun 01</p>
+                    <p className="text-sm font-bold text-green-700">Jun 01</p>
                     <p className="text-xs text-gray-500">Thu</p>
                   </div>
                   <div>
@@ -829,7 +829,7 @@ const payForRation = async (rationId, amount) => {
                     <p className="text-sm text-gray-500 mt-1">
                       Extended package with additional items
                     </p>
-                    <p className="text-xs text-emerald-600 mt-1">
+                    <p className="text-xs text-green-700 mt-1">
                       At Depot #{userData?.depotId || "N/A"}
                     </p>
                   </div>
@@ -841,7 +841,7 @@ const payForRation = async (rationId, amount) => {
 
         {/* Transaction History Tab */}
         <TabsContent value="history" className="space-y-6">
-          <Card>
+          <Card className="border border-green-100">
             <CardHeader>
               <CardTitle>Transaction History</CardTitle>
               <CardDescription>Complete record of your blockchain transactions</CardDescription>
@@ -860,12 +860,12 @@ const payForRation = async (rationId, amount) => {
                   </TableHeader>
                   <TableBody>
                     {txHistory.map((tx, index) => (
-                      <TableRow key={index} className="hover:bg-green-50/50">
+                      <TableRow key={index} className="hover:bg-green-50/50 border-b border-green-100">
                         <TableCell className="font-medium">{tx.type}</TableCell>
                         <TableCell>{formatDate(tx.timestamp)}</TableCell>
                         <TableCell>{tx.details}</TableCell>
                         <TableCell>
-                          <span className="font-mono text-emerald-600">{tx.amount}</span>
+                          <span className="font-mono text-green-700">{tx.amount}</span>
                         </TableCell>
                         <TableCell>
                           {tx.txHash && (
@@ -873,7 +873,7 @@ const payForRation = async (rationId, amount) => {
                               href={`https://sepolia.etherscan.io/tx/${tx.txHash}`} 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              className="text-green-600 hover:underline flex items-center"
+                              className="text-green-700 hover:underline flex items-center"
                             >
                               View on Etherscan
                               <ArrowUpRight className="ml-1 h-3 w-3" />
@@ -897,7 +897,7 @@ const payForRation = async (rationId, amount) => {
 
       {/* Payment Dialog */}
       <Dialog open={paymentDialog} onOpenChange={setPaymentDialog}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] border border-green-100">
           <DialogHeader>
             <DialogTitle>Make Payment</DialogTitle>
             <DialogDescription>
@@ -907,7 +907,7 @@ const payForRation = async (rationId, amount) => {
           
           {selectedRation && (
             <div className="space-y-4 py-4">
-              <div className="bg-gray-50 p-4 rounded-md">
+              <div className="bg-green-50 p-4 rounded-md">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-500">Ration ID:</span>
                   <span className="font-medium">{selectedRation.id}</span>
@@ -922,7 +922,7 @@ const payForRation = async (rationId, amount) => {
                 </div>
                 <div className="flex justify-between text-sm mt-2">
                   <span className="text-gray-500">Amount:</span>
-                  <span className="font-mono font-bold text-emerald-600">{paymentAmount} ETH</span>
+                  <span className="font-mono font-bold text-green-700">{paymentAmount} ETH</span>
                 </div>
               </div>
               
@@ -930,7 +930,7 @@ const payForRation = async (rationId, amount) => {
                 <p className="text-sm text-gray-700">Items included:</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedRation.items.map((item, index) => (
-                    <Badge key={index} className="bg-emerald-50 text-emerald-800 border-emerald-200">
+                    <Badge key={index} className="bg-green-50 text-green-800 border-green-200">
                       {item.name}: {item.quantity}
                     </Badge>
                   ))}
@@ -943,13 +943,14 @@ const payForRation = async (rationId, amount) => {
             <Button
               type="button"
               variant="outline"
+              className="border-green-200"
               onClick={() => setPaymentDialog(false)}
             >
               Cancel
             </Button>
             <Button
               type="button"
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-green-600 hover:bg-green-700"
               onClick={() => payForRation(selectedRation.id, paymentAmount)}
               disabled={paying}
             >
