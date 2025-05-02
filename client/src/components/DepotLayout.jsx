@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion } from "framer-motion"
-import { useRouter, usePathname } from 'next/navigation'
-import { useMetaMask } from '@/components/MetaMaskProvider'
-import Link from 'next/link'
-import { 
-  BarChart3, 
-  Box, 
-  ClipboardList, 
-  Home, 
-  LogOut, 
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useRouter, usePathname } from "next/navigation";
+import { useMetaMask } from "@/components/MetaMaskProvider";
+import Link from "next/link";
+import {
+  BarChart3,
+  Box,
+  ClipboardList,
+  Home,
+  LogOut,
   MapPin,
-  Package, 
-  Settings, 
-  Truck, 
+  Package,
+  Settings,
+  Truck,
   Users,
-  Warehouse
-} from 'lucide-react'
+  Warehouse,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -34,8 +34,8 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -43,19 +43,20 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export default function DepotLayout({ children }) {
   const { connected, provider } = useMetaMask();
   const router = useRouter();
   const pathname = usePathname();
   const [notifications, setNotifications] = useState(2);
-  
+
   // Add isMounted state to prevent hydration errors
   const [isMounted, setIsMounted] = useState(false);
-  
+
   // Mark component as mounted on client side
   useEffect(() => {
     setIsMounted(true);
@@ -64,7 +65,7 @@ export default function DepotLayout({ children }) {
   // Handle redirections only on client-side after mounting
   useEffect(() => {
     if (isMounted && !connected) {
-      router.push('/');
+      router.push("/");
     }
   }, [isMounted, connected, router]);
 
@@ -74,12 +75,17 @@ export default function DepotLayout({ children }) {
       <div className="flex min-h-screen w-full bg-green-50/30">
         <Sidebar variant="inset" className="border-r border-green-100">
           <SidebarHeader className="border-b border-green-100">
-            <div className="flex items-center gap-2 px-4 py-1">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-green-600 text-white">
-                <Warehouse className="h-4 w-4" />
+          <Link href="/">
+              <div className="flex items-center gap-2 px-4 py-1">
+                <Image
+                  src="/image2.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="h-8 rounded-md w-[80%] mx-auto"
+                />
               </div>
-              <div className="font-semibold text-green-900">Grainlyyy</div>
-            </div>
+            </Link>
           </SidebarHeader>
           <SidebarContent>
             <SidebarGroup>
@@ -95,7 +101,10 @@ export default function DepotLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/depot/inventory"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/depot/inventory"}
+                    >
                       <Link href="/depot/inventory">
                         <Box className="h-4 w-4 text-green-700" />
                         <span>Inventory</span>
@@ -103,18 +112,26 @@ export default function DepotLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/depot/deliveries"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/depot/deliveries"}
+                    >
                       <Link href="/depot/deliveries">
                         <Truck className="h-4 w-4 text-green-700" />
                         <span>Deliveries</span>
                         {notifications > 0 && (
-                          <Badge className="ml-auto bg-green-600 hover:bg-green-700">{notifications}</Badge>
+                          <Badge className="ml-auto bg-green-600 hover:bg-green-700">
+                            {notifications}
+                          </Badge>
                         )}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/depot/distribution"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/depot/distribution"}
+                    >
                       <Link href="/depot/distribution">
                         <Package className="h-4 w-4 text-green-700" />
                         <span>Ration Distribution</span>
@@ -129,7 +146,10 @@ export default function DepotLayout({ children }) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/depot/users"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/depot/users"}
+                    >
                       <Link href="/depot/users">
                         <Users className="h-4 w-4 text-green-700" />
                         <span>Beneficiaries</span>
@@ -137,7 +157,10 @@ export default function DepotLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/depot/reports"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/depot/reports"}
+                    >
                       <Link href="/depot/reports">
                         <BarChart3 className="h-4 w-4 text-green-700" />
                         <span>Reports</span>
@@ -152,7 +175,10 @@ export default function DepotLayout({ children }) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/depot/settings"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/depot/settings"}
+                    >
                       <Link href="/depot/settings">
                         <Settings className="h-4 w-4 text-green-700" />
                         <span>Settings</span>
@@ -167,14 +193,24 @@ export default function DepotLayout({ children }) {
             <div className="p-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="w-full justify-start gap-2 px-2">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start gap-2 px-2"
+                  >
                     <Avatar className="h-6 w-6">
-                      <AvatarImage src="/placeholder-user.jpg" alt="Depot Manager" />
-                      <AvatarFallback className="bg-green-100 text-green-800">DM</AvatarFallback>
+                      <AvatarImage
+                        src="/placeholder-user.jpg"
+                        alt="Depot Manager"
+                      />
+                      <AvatarFallback className="bg-green-100 text-green-800">
+                        DM
+                      </AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col items-start text-sm">
                       <span className="font-medium">Depot Manager</span>
-                      <span className="text-xs text-muted-foreground">depot@Grainlyyy.com</span>
+                      <span className="text-xs text-muted-foreground">
+                        depot@Grainlyyy.com
+                      </span>
                     </div>
                   </Button>
                 </DropdownMenuTrigger>
@@ -225,13 +261,21 @@ export default function DepotLayout({ children }) {
               </form>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" className="border-green-200 text-green-700">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-green-200 text-green-700"
+              >
                 <MapPin className="h-4 w-4 mr-2" />
                 <span className="sr-only sm:not-sr-only">Location</span>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="icon" className="relative rounded-full border-green-200">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="relative rounded-full border-green-200"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -257,14 +301,22 @@ export default function DepotLayout({ children }) {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <div className="flex flex-col space-y-1">
-                      <span className="text-sm font-medium">New delivery arriving</span>
-                      <span className="text-xs text-muted-foreground">15 minutes ago</span>
+                      <span className="text-sm font-medium">
+                        New delivery arriving
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        15 minutes ago
+                      </span>
                     </div>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <div className="flex flex-col space-y-1">
-                      <span className="text-sm font-medium">OTP verification pending</span>
-                      <span className="text-xs text-muted-foreground">1 hour ago</span>
+                      <span className="text-sm font-medium">
+                        OTP verification pending
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        1 hour ago
+                      </span>
                     </div>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -277,8 +329,13 @@ export default function DepotLayout({ children }) {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="rounded-full">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="/placeholder-user.jpg" alt="Depot Manager" />
-                      <AvatarFallback className="bg-green-100 text-green-800">DM</AvatarFallback>
+                      <AvatarImage
+                        src="/placeholder-user.jpg"
+                        alt="Depot Manager"
+                      />
+                      <AvatarFallback className="bg-green-100 text-green-800">
+                        DM
+                      </AvatarFallback>
                     </Avatar>
                     <span className="sr-only">Toggle user menu</span>
                   </Button>
@@ -295,9 +352,7 @@ export default function DepotLayout({ children }) {
               </DropdownMenu>
             </div>
           </header>
-          <main className="flex-1 overflow-auto">
-            {children}
-          </main>
+          <main className="flex-1 overflow-auto">{children}</main>
         </div>
       </div>
     </SidebarProvider>

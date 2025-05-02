@@ -1888,7 +1888,7 @@ export default function DeliveryPersonDashboard() {
           </div>
         </div>
       )}
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <h3 className="font-medium text-lg mb-2">Complete Delivery by ID</h3>
         <div className="flex items-center gap-2">
           <input
@@ -1905,7 +1905,7 @@ export default function DeliveryPersonDashboard() {
             Complete
           </Button>
         </div>
-      </div>
+      </div> */}
     </DealerLayout>
   );
 }

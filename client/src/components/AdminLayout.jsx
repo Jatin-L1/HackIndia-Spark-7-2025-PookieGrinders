@@ -91,6 +91,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useMetaMask } from "@/components/MetaMaskProvider";
+import Image from "next/image";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -110,10 +111,13 @@ export default function AdminLayout({ children }) {
           <SidebarHeader className="border-b border-green-100">
             <Link href="/">
               <div className="flex items-center gap-2 px-4 py-1">
-                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-green-600 text-white">
-                  <Package className="h-4 w-4" />
-                </div>
-                <div className="font-semibold text-green-900">Grainlyyy</div>
+                <Image
+                  src="/image2.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="h-8 rounded-md w-[80%] mx-auto"
+                />
               </div>
             </Link>
           </SidebarHeader>

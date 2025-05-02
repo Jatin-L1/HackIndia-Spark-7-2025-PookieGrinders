@@ -1,12 +1,24 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { motion } from "framer-motion"
-import { BarChart3, Box, ClipboardList, Home, Leaf, LogOut, Package, Settings, ShoppingCart, Truck, Users } from 'lucide-react'
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import * as React from "react";
+import { motion } from "framer-motion";
+import {
+  BarChart3,
+  Box,
+  ClipboardList,
+  Home,
+  Leaf,
+  LogOut,
+  Package,
+  Settings,
+  ShoppingCart,
+  Truck,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -21,8 +33,8 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,25 +42,31 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export default function DealerLayout({ children }) {
-  const pathname = usePathname()
-  const [notifications, setNotifications] = React.useState(3)
+  const pathname = usePathname();
+  const [notifications, setNotifications] = React.useState(3);
 
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-green-50/30">
         <Sidebar variant="inset" className="border-r border-green-100">
           <SidebarHeader className="border-b border-green-100">
-            <div className="flex items-center gap-2 px-4 py-1">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-green-600 text-white">
-                <Leaf className="h-4 w-4" />
+            <Link href="/">
+              <div className="flex items-center gap-2 px-4 py-1">
+                <Image
+                  src="/image2.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="h-8 rounded-md w-[80%] mx-auto"
+                />
               </div>
-              <div className="font-semibold text-green-900">Grainlyyy</div>
-            </div>
+            </Link>
           </SidebarHeader>
           <SidebarContent>
             <SidebarGroup>
@@ -56,7 +74,10 @@ export default function DealerLayout({ children }) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/dashboard"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/dashboard"}
+                    >
                       <Link href="/dashboard">
                         <Home className="h-4 w-4 text-green-700" />
                         <span>Dashboard</span>
@@ -64,7 +85,10 @@ export default function DealerLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/inventory"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/inventory"}
+                    >
                       <Link href="/inventory">
                         <Box className="h-4 w-4 text-green-700" />
                         <span>Inventory</span>
@@ -72,16 +96,24 @@ export default function DealerLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/deliveries"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/deliveries"}
+                    >
                       <Link href="/deliveries">
                         <Truck className="h-4 w-4 text-green-700" />
                         <span>Deliveries</span>
-                        <Badge className="ml-auto bg-green-600 hover:bg-green-700">{notifications}</Badge>
+                        <Badge className="ml-auto bg-green-600 hover:bg-green-700">
+                          {notifications}
+                        </Badge>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/supply-requests"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/supply-requests"}
+                    >
                       <Link href="/supply-requests">
                         <ClipboardList className="h-4 w-4 text-green-700" />
                         <span>Supply Requests</span>
@@ -89,7 +121,10 @@ export default function DealerLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/distribution"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/distribution"}
+                    >
                       <Link href="/distribution">
                         <ShoppingCart className="h-4 w-4 text-green-700" />
                         <span>Distribution</span>
@@ -104,7 +139,10 @@ export default function DealerLayout({ children }) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/analytics"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/analytics"}
+                    >
                       <Link href="/analytics">
                         <BarChart3 className="h-4 w-4 text-green-700" />
                         <span>Analytics</span>
@@ -112,7 +150,10 @@ export default function DealerLayout({ children }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/customers"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/customers"}
+                    >
                       <Link href="/customers">
                         <Users className="h-4 w-4 text-green-700" />
                         <span>Customers</span>
@@ -127,7 +168,10 @@ export default function DealerLayout({ children }) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === "/settings"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === "/settings"}
+                    >
                       <Link href="/settings">
                         <Settings className="h-4 w-4 text-green-700" />
                         <span>Settings</span>
@@ -142,14 +186,21 @@ export default function DealerLayout({ children }) {
             <div className="p-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="w-full justify-start gap-2 px-2">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start gap-2 px-2"
+                  >
                     <Avatar className="h-6 w-6">
                       <AvatarImage src="/placeholder-user.jpg" alt="Dealer" />
-                      <AvatarFallback className="bg-green-100 text-green-800">GD</AvatarFallback>
+                      <AvatarFallback className="bg-green-100 text-green-800">
+                        GD
+                      </AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col items-start text-sm">
                       <span className="font-medium">Green Dealer</span>
-                      <span className="text-xs text-muted-foreground">dealer@example.com</span>
+                      <span className="text-xs text-muted-foreground">
+                        dealer@example.com
+                      </span>
                     </div>
                   </Button>
                 </DropdownMenuTrigger>
@@ -200,12 +251,20 @@ export default function DealerLayout({ children }) {
               </form>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" className="border-green-200 text-green-700">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-green-200 text-green-700"
+              >
                 <span className="sr-only sm:not-sr-only sm:ml-2">Help</span>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="icon" className="relative rounded-full border-green-200">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="relative rounded-full border-green-200"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -231,20 +290,32 @@ export default function DealerLayout({ children }) {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <div className="flex flex-col space-y-1">
-                      <span className="text-sm font-medium">New delivery request</span>
-                      <span className="text-xs text-muted-foreground">10 minutes ago</span>
+                      <span className="text-sm font-medium">
+                        New delivery request
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        10 minutes ago
+                      </span>
                     </div>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <div className="flex flex-col space-y-1">
-                      <span className="text-sm font-medium">Inventory alert: Low stock</span>
-                      <span className="text-xs text-muted-foreground">30 minutes ago</span>
+                      <span className="text-sm font-medium">
+                        Inventory alert: Low stock
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        30 minutes ago
+                      </span>
                     </div>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <div className="flex flex-col space-y-1">
-                      <span className="text-sm font-medium">Supply request approved</span>
-                      <span className="text-xs text-muted-foreground">2 hours ago</span>
+                      <span className="text-sm font-medium">
+                        Supply request approved
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        2 hours ago
+                      </span>
                     </div>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -258,7 +329,9 @@ export default function DealerLayout({ children }) {
                   <Button variant="ghost" size="icon" className="rounded-full">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src="/placeholder-user.jpg" alt="Dealer" />
-                      <AvatarFallback className="bg-green-100 text-green-800">GD</AvatarFallback>
+                      <AvatarFallback className="bg-green-100 text-green-800">
+                        GD
+                      </AvatarFallback>
                     </Avatar>
                     <span className="sr-only">Toggle user menu</span>
                   </Button>
@@ -279,5 +352,5 @@ export default function DealerLayout({ children }) {
         </div>
       </div>
     </SidebarProvider>
-  )
+  );
 }

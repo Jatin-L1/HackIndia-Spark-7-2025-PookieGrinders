@@ -265,7 +265,7 @@ export default function Home() {
                   href="#"
                   className="px-6 py-3 bg-emerald-800 border border-emerald-700 rounded-md hover:bg-emerald-700 transition-colors"
                 >
-                  Watch Demo
+                  Get Started
                 </Link>
               </motion.div>
             </motion.div>
