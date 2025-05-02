@@ -410,7 +410,7 @@ const handleRationAllocation = async (e) => {
       <div className="container mx-auto p-6">
         <div className="flex flex-col gap-2 mb-6">
           <h1 className="text-3xl font-bold text-green-900">Dashboard</h1>
-          <p className="text-muted-foreground text-gray-600">
+          <p className="text-muted-foreground">
             Welcome to the Grainlyyy dashboard.
           </p>
         </div>

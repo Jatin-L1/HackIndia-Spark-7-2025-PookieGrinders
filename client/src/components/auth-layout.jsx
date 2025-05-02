@@ -13,7 +13,7 @@ export function AuthLayout({ children, title, description }) {
               <div className="flex h-10 w-10 items-center justify-center rounded-md bg-green-600 text-white">
                 <Leaf className="h-6 w-6" />
               </div>
-              <div className="text-2xl font-bold text-green-900">Green Dealer</div>
+              <div className="text-2xl font-bold text-green-900">Grainlyy</div>
             </Link>
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -37,8 +37,8 @@ export function AuthLayout({ children, title, description }) {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-green-500/20 to-green-900/40 z-10" />
           <Image
-            className="h-full w-full object-cover"
-            src="/placeholder.svg?height=1080&width=1920"
+            className="h-full w-full object-contain"
+            src="/image3.png"
             alt="Green technology illustration"
             width={1920}
             height={1080}
@@ -50,7 +50,7 @@ export function AuthLayout({ children, title, description }) {
                 "Sustainable practices today for a greener tomorrow. Join us in our mission to create a more
                 environmentally conscious world."
               </p>
-              <footer className="text-sm text-white/70">Green Dealer Initiative</footer>
+              <footer className="text-sm text-white/70">Grainlyy Initiative</footer>
             </blockquote>
           </div>
         </motion.div>

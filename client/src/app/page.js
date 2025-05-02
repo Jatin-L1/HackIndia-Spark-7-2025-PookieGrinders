@@ -136,15 +136,15 @@ export default function Home() {
           <header className="shadow-2xl fixed left-50 top-5 w-[80%] mx-auto px-5 rounded-xl border-1 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-[101] text-black">
             <div className=" flex h-16 items-center justify-between">
               <div className="flex items-center gap-2">
-                {/* <Database className="h-6 w-6 text-green-600" />
-                <span className="text-xl font-bold">Grainlyy</span> */}
-                <Image
-                  src="/image2.png"
-                  alt="Grainlyy Logo"
-                  width={100}
-                  height={100}
-                  className="w-full h-full mt-1"
-                />
+                <Link href="/" className="flex items-center gap-2">
+                  <Image
+                    src="/image2.png"
+                    alt="Grainlyy Logo"
+                    width={100}
+                    height={100}
+                    className="w-full h-full mt-1"
+                  />
+                </Link>
               </div>
               <nav className="hidden md:flex items-center gap-6">
                 <Link
@@ -291,7 +291,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="absolute bottom-12 right-12 flex bg-emerald-800/80 rounded-full p-1 hidden md:flex"
+            className="absolute bottom-12 right-12 bg-emerald-800/80 rounded-full p-1 hidden md:flex"
           >
             <button className="px-4 py-1 rounded-full bg-green-400 text-emerald-900 text-sm font-medium">
               Public

@@ -183,14 +183,40 @@ export default function UserDashboard() {
       const deliveries = await contract.getUserDeliveries(userId);
       
       // Process deliveries
-      const processedDeliveries = deliveries.map(delivery => ({
-        id: String(delivery.id),
-        depotId: String(delivery.depotId),
-        deliveryPersonId: String(delivery.deliveryPersonId),
-        status: delivery.status,
-        date: new Date(Number(delivery.timestamp) * 1000).toISOString(),
-        isPaid: delivery.isPaid
-      }));
+// Fix for the date conversion error in the fetchUserData function
+
+// Process deliveries
+const processedDeliveries = deliveries.map(delivery => {
+  // Add defensive timestamp handling
+  let formattedDate;
+  try {
+    // Ensure timestamp is a valid number and within JavaScript's Date range
+    const timestamp = Number(delivery.timestamp);
+    if (timestamp && !isNaN(timestamp) && isFinite(timestamp)) {
+      const date = new Date(timestamp * 1000);
+      // Check if date is valid before calling toISOString()
+      if (date instanceof Date && !isNaN(date)) {
+        formattedDate = date.toISOString();
+      } else {
+        formattedDate = new Date().toISOString(); // Fallback to current time
+      }
+    } else {
+      formattedDate = new Date().toISOString(); // Fallback to current time
+    }
+  } catch (error) {
+    console.error("Error formatting date:", error);
+    formattedDate = new Date().toISOString(); // Fallback to current time
+  }
+
+  return {
+    id: String(delivery.id || 0),
+    depotId: String(delivery.depotId || 0),
+    deliveryPersonId: String(delivery.deliveryPersonId || 0),
+    status: delivery.status || "unknown",
+    date: formattedDate,
+    isPaid: Boolean(delivery.isPaid)
+  };
+});
       
       setUserDeliveries(processedDeliveries);
       

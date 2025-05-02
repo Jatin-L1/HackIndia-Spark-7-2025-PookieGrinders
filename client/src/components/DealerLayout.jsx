@@ -197,7 +197,7 @@ export default function DealerLayout({ children }) {
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col items-start text-sm">
-                      <span className="font-medium">Green Dealer</span>
+                      <span className="font-medium">Grainlyy</span>
                       <span className="text-xs text-muted-foreground">
                         dealer@example.com
                       </span>
