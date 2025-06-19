@@ -44,7 +44,7 @@ Grainlyy creates an end-to-end transparent supply chain for public distribution 
 | Wallet | Inbuilt/Metamask | For login and secure transactions |
 | Frontend | Next.js | To build interactive dashboards for users |
 | Backend | Node.js + Express.js | To manage location data, Chainlink calls, and frontend connectivity |
-| Blockchain | Etherium  | For fast and low-cost transactions |
+| Blockchain | Polygon  | For fast and low-cost transactions |
 | Database (Optional) | MongoDB Atlas | For off-chain storage like complaints and analytics |
 | Storage (Optional) | IPFS | For decentralized storage of documents and images |
 
